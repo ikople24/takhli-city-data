@@ -1,5 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import DataTable from "@/components/public/DataTable";
+import PageHero from "@/components/public/PageHero";
+import { Heart } from "lucide-react";
 import type { PublicService } from "@/types/database";
 import React from "react";
 
@@ -29,13 +31,21 @@ export default async function ServicesPage() {
     .order("type");
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">บริการสาธารณะ</h1>
-      <DataTable
-        data={data ?? []}
-        columns={columns}
-        emptyMessage="ยังไม่มีข้อมูลบริการสาธารณะ"
+    <div>
+      <PageHero
+        title="บริการสาธารณะ"
+        description="โรงพยาบาล โรงเรียน วัด และหน่วยงานภาครัฐในพื้นที่ตาคลี"
+        icon={Heart}
+        color="#5CB8E4"
+        breadcrumb="บริการสาธารณะ"
       />
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <DataTable
+          data={data ?? []}
+          columns={columns}
+          emptyMessage="ยังไม่มีข้อมูลบริการสาธารณะ"
+        />
+      </div>
     </div>
   );
 }

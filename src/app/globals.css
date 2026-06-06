@@ -33,3 +33,44 @@
   --depth: 1;
   --noise: 0;
 }
+
+/* ── Keyframes ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── Utilities ── */
+@layer utilities {
+  .hero-dots {
+    background-image: radial-gradient(circle, rgba(135, 88, 255, 0.18) 1.5px, transparent 1.5px);
+    background-size: 28px 28px;
+  }
+
+  .hero-mesh {
+    background:
+      radial-gradient(ellipse 80% 60% at 20% -10%, rgba(135, 88, 255, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 110%, rgba(92, 184, 228, 0.1) 0%, transparent 60%);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #8758FF 0%, #5CB8E4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .fade-up   { animation: fadeInUp 0.55s ease-out both; }
+  .fade-up-1 { animation: fadeInUp 0.55s 0.08s ease-out both; }
+  .fade-up-2 { animation: fadeInUp 0.55s 0.16s ease-out both; }
+  .fade-up-3 { animation: fadeInUp 0.55s 0.28s ease-out both; }
+  .fade-up-4 { animation: fadeInUp 0.55s 0.38s ease-out both; }
+  .fade-up-5 { animation: fadeInUp 0.55s 0.48s ease-out both; }
+  .fade-up-6 { animation: fadeInUp 0.55s 0.56s ease-out both; }
+}

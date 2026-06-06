@@ -1,5 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import DataTable from "@/components/public/DataTable";
+import PageHero from "@/components/public/PageHero";
+import { Building2 } from "lucide-react";
 import type { Business } from "@/types/database";
 import React from "react";
 
@@ -41,13 +43,21 @@ export default async function BusinessPage() {
     .order("name");
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">สถานประกอบการและธุรกิจ</h1>
-      <DataTable
-        data={data ?? []}
-        columns={columns}
-        emptyMessage="ยังไม่มีข้อมูลสถานประกอบการ"
+    <div>
+      <PageHero
+        title="สถานประกอบการและธุรกิจ"
+        description="ร้านค้า โรงงาน และธุรกิจทุกประเภทที่จดทะเบียนในพื้นที่ตาคลี"
+        icon={Building2}
+        color="#5CB8E4"
+        breadcrumb="สถานประกอบการ"
       />
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <DataTable
+          data={data ?? []}
+          columns={columns}
+          emptyMessage="ยังไม่มีข้อมูลสถานประกอบการ"
+        />
+      </div>
     </div>
   );
 }

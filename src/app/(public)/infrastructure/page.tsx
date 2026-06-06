@@ -1,5 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import DataTable from "@/components/public/DataTable";
+import PageHero from "@/components/public/PageHero";
+import { Zap } from "lucide-react";
 import type { Infrastructure } from "@/types/database";
 import React from "react";
 
@@ -43,13 +45,21 @@ export default async function InfrastructurePage() {
     .order("type");
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">โครงสร้างพื้นฐาน</h1>
-      <DataTable
-        data={data ?? []}
-        columns={columns}
-        emptyMessage="ยังไม่มีข้อมูลโครงสร้างพื้นฐาน"
+    <div>
+      <PageHero
+        title="โครงสร้างพื้นฐาน"
+        description="ถนน ระบบไฟฟ้า ประปา และอินเทอร์เน็ตชุมชนในพื้นที่ตาคลี"
+        icon={Zap}
+        color="#8758FF"
+        breadcrumb="โครงสร้างพื้นฐาน"
       />
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <DataTable
+          data={data ?? []}
+          columns={columns}
+          emptyMessage="ยังไม่มีข้อมูลโครงสร้างพื้นฐาน"
+        />
+      </div>
     </div>
   );
 }

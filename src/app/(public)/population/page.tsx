@@ -1,5 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import DataTable from "@/components/public/DataTable";
+import PageHero from "@/components/public/PageHero";
+import { Users } from "lucide-react";
 import type { PopulationData } from "@/types/database";
 import React from "react";
 
@@ -40,13 +42,21 @@ export default async function PopulationPage() {
     .order("area_name");
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">ข้อมูลประชากร</h1>
-      <DataTable
-        data={data ?? []}
-        columns={columns}
-        emptyMessage="ยังไม่มีข้อมูลประชากร"
+    <div>
+      <PageHero
+        title="ข้อมูลประชากร"
+        description="จำนวนประชากร ครัวเรือน และการกระจายตัวในแต่ละตำบล"
+        icon={Users}
+        color="#8758FF"
+        breadcrumb="ข้อมูลประชากร"
       />
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <DataTable
+          data={data ?? []}
+          columns={columns}
+          emptyMessage="ยังไม่มีข้อมูลประชากร"
+        />
+      </div>
     </div>
   );
 }
