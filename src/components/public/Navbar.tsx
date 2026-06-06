@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin } from "lucide-react";
 
 const navLinks = [
@@ -15,11 +16,15 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 shrink-0 group">
-          <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-base shrink-0 transition-transform group-hover:scale-105"
-            style={{ background: "linear-gradient(135deg, #8758FF, #5CB8E4)" }}
-          >
-            ต
+          <div className="w-9 h-9 rounded-xl overflow-hidden shrink-0 transition-transform group-hover:scale-105">
+            <Image
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3PQAYjgKFd7CnGjZ5cJxgUEBapclx-CpR4oFFW7KuJQ&s=10"
+              alt="เทศบาลเมืองตาคลี"
+              width={36}
+              height={36}
+              className="w-full h-full object-contain"
+              unoptimized
+            />
           </div>
           <div className="hidden sm:block leading-tight">
             <p className="font-bold text-sm">ฐานข้อมูลกลางเมืองตาคลี</p>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin } from "lucide-react";
 
 const dataLinks = [
@@ -21,11 +22,15 @@ export default function Footer() {
         {/* Brand */}
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white shrink-0"
-              style={{ background: "linear-gradient(135deg, #8758FF, #5CB8E4)" }}
-            >
-              ต
+            <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0">
+              <Image
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3PQAYjgKFd7CnGjZ5cJxgUEBapclx-CpR4oFFW7KuJQ&s=10"
+                alt="เทศบาลเมืองตาคลี"
+                width={40}
+                height={40}
+                className="w-full h-full object-contain"
+                unoptimized
+              />
             </div>
             <div>
               <p className="font-semibold text-white text-sm leading-snug">
@@ -64,7 +69,7 @@ export default function Footer() {
           <div className="flex items-start gap-2 text-sm">
             <MapPin size={14} className="mt-0.5 shrink-0" style={{ color: "#8758FF" }} />
             <span className="leading-relaxed">
-              เทศบาลเมืองตาคลี ถ.ตาคลี-ท่าตะโก
+              เลขที่ 1 ซ.ประชาตาคลี 3
               <br />
               ต.ตาคลี อ.ตาคลี จ.นครสวรรค์ 60140
             </span>
@@ -75,7 +80,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/6 py-4">
         <p className="text-center text-xs text-white/25">
-          © 2024 เทศบาลเมืองตาคลี จังหวัดนครสวรรค์ · สงวนลิขสิทธิ์
+          © 2026 เทศบาลเมืองตาคลี จังหวัดนครสวรรค์ · สงวนลิขสิทธิ์
         </p>
       </div>
     </footer>
