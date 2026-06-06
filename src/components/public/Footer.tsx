@@ -64,7 +64,7 @@ export default function Footer() {
           <div className="flex items-start gap-2 text-sm">
             <MapPin size={14} className="mt-0.5 shrink-0" style={{ color: "#8758FF" }} />
             <span className="leading-relaxed">
-              เทศบาลเมืองตาคลี ถ.ตาคลี-ท่าตะโก
+              เลขที่ 1 ซ.ประชาตาคลี 3
               <br />
               ต.ตาคลี อ.ตาคลี จ.นครสวรรค์ 60140
             </span>
@@ -75,7 +75,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/6 py-4">
         <p className="text-center text-xs text-white/25">
-          © 2024 เทศบาลเมืองตาคลี จังหวัดนครสวรรค์ · สงวนลิขสิทธิ์
+          © 2026 เทศบาลเมืองตาคลี จังหวัดนครสวรรค์ · สงวนลิขสิทธิ์
         </p>
       </div>
     </footer>
