@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Pencil, Trash2, Plus } from "lucide-react";
 import React from "react";
 
@@ -26,19 +27,28 @@ export default function CrudTable<T extends { id: string }>({
   addLabel = "เพิ่มรายการ",
   role,
 }: CrudTableProps<T>) {
+  const router = useRouter();
   // undefined = modal closed, null = adding new, T = editing existing
   const [editing, setEditing] = useState<T | null | undefined>(undefined);
   const [deleting, setDeleting] = useState<string | null>(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
 
   const canEdit = role === "editor" || role === "super_admin";
   const canDelete = role === "super_admin";
 
   async function handleDelete(id: string) {
     setDeleteLoading(true);
-    await onDelete(id);
-    setDeleteLoading(false);
-    setDeleting(null);
+    setDeleteError(null);
+    try {
+      await onDelete(id);
+      router.refresh();
+      setDeleting(null);
+    } catch (e) {
+      setDeleteError(e instanceof Error ? e.message : "เกิดข้อผิดพลาด");
+    } finally {
+      setDeleteLoading(false);
+    }
   }
 
   return (
@@ -134,6 +144,9 @@ export default function CrudTable<T extends { id: string }>({
             <p className="py-4">
               คุณต้องการลบรายการนี้ใช่ไหม? การกระทำนี้ไม่สามารถย้อนกลับได้
             </p>
+            {deleteError && (
+              <div className="alert alert-error alert-sm text-sm py-2">{deleteError}</div>
+            )}
             <div className="modal-action">
               <button
                 className="btn btn-ghost"

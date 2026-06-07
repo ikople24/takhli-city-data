@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { upsertBusiness } from "./_actions";
 import type { Business } from "@/types/database";
 
@@ -12,10 +13,22 @@ export default function BusinessForm({
   item: Business | null;
   onClose: () => void;
 }) {
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   return (
     <form action={async (fd) => {
-      await upsertBusiness(fd);
-      onClose();
+      setError(null);
+      setLoading(true);
+      try {
+        await upsertBusiness(fd);
+        router.refresh();
+        onClose();
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "เกิดข้อผิดพลาด กรุณาลองใหม่");
+      } finally {
+        setLoading(false);
+      }
     }}>
       {item && <input type="hidden" name="id" value={item.id} />}
       <h3 className="font-bold text-lg mb-4">
@@ -60,9 +73,12 @@ export default function BusinessForm({
           </div>
         </div>
       </div>
+      {error && <div className="alert alert-error text-sm py-2 mt-3">{error}</div>}
       <div className="modal-action mt-4">
-        <button type="button" className="btn btn-ghost btn-sm" onClick={onClose}>ยกเลิก</button>
-        <button type="submit" className="btn btn-primary btn-sm">บันทึก</button>
+        <button type="button" className="btn btn-ghost btn-sm" onClick={onClose} disabled={loading}>ยกเลิก</button>
+        <button type="submit" className="btn btn-primary btn-sm" disabled={loading}>
+          {loading ? <span className="loading loading-spinner loading-xs" /> : "บันทึก"}
+        </button>
       </div>
     </form>
   );

@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { upsertPopulation } from "./_actions";
 import type { PopulationData } from "@/types/database";
 
@@ -21,11 +22,23 @@ export default function PopulationForm({
   item: PopulationData | null;
   onClose: () => void;
 }) {
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   return (
     <form
       action={async (fd) => {
-        await upsertPopulation(fd);
-        onClose();
+        setError(null);
+        setLoading(true);
+        try {
+          await upsertPopulation(fd);
+          router.refresh();
+          onClose();
+        } catch (e) {
+          setError(e instanceof Error ? e.message : "เกิดข้อผิดพลาด กรุณาลองใหม่");
+        } finally {
+          setLoading(false);
+        }
       }}
     >
       {item && <input type="hidden" name="id" value={item.id} />}
@@ -60,12 +73,13 @@ export default function PopulationForm({
           </div>
         ))}
       </div>
+      {error && <div className="alert alert-error text-sm py-2 mt-3">{error}</div>}
       <div className="modal-action mt-4">
-        <button type="button" className="btn btn-ghost btn-sm" onClick={onClose}>
+        <button type="button" className="btn btn-ghost btn-sm" onClick={onClose} disabled={loading}>
           ยกเลิก
         </button>
-        <button type="submit" className="btn btn-primary btn-sm">
-          บันทึก
+        <button type="submit" className="btn btn-primary btn-sm" disabled={loading}>
+          {loading ? <span className="loading loading-spinner loading-xs" /> : "บันทึก"}
         </button>
       </div>
     </form>
