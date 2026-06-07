@@ -4,9 +4,6 @@
 - (ว่าง)
 
 ## รอทำ
-- [ ] รัน SQL schema ใน Supabase SQL Editor (ดูที่ docs/supabase-schema.sql)
-- [ ] เชื่อมต่อ Vercel: vercel.com → New Project → Import takhli-city-data → ตั้ง env vars
-- [ ] สร้าง super_admin user แรกใน Supabase Auth dashboard
 - [ ] ใส่ข้อมูลจริงลง Supabase ผ่าน admin panel
 
 ## เสร็จแล้ว
@@ -20,5 +17,9 @@
 - [x] Admin CRUD pages (population, business, infrastructure, services)
 - [x] Admin users management (super_admin only)
 - [x] Export Excel/CSV
-- [x] Vercel config
+- [x] Vercel config + deploy production
 - [x] Design doc
+- [x] แก้ไขข้อมูลที่อยู่, ปีลิขสิทธิ์ และ email domain ให้ถูกต้อง
+- [x] เพิ่ม logo เทศบาลเมืองตาคลีใน Navbar และ Footer
+- [x] รัน SQL schema + สร้าง tables ใน Supabase (5 tables, RLS enabled)
+- [x] สร้าง super_admin user (boldnessking26@gmail.com)

@@ -99,7 +99,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="admin@takhli.go.th"
+              placeholder="admin@takhlicity.go.th"
             />
           </div>
 
